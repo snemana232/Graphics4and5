@@ -22,7 +22,7 @@ import { RenderPass } from "../lib/webglutils/RenderPass.js";
 import { Camera } from "../lib/webglutils/Camera.js";
 
 export class SkinningAnimation extends CanvasAnimation {
-  private gui: GUI;
+  public gui: GUI;
   private millis: number;
 
   private loadedScene: string;
@@ -235,7 +235,7 @@ export class SkinningAnimation extends CanvasAnimation {
 
     this.skeletonRenderPass.addUniform("highlighted", 
     (gl: WebGLRenderingContext, loc: WebGLUniformLocation) => {
-      gl.uniform1f(loc, this.num);
+      gl.uniform1f(loc, this.gui.highlight);
     });
 
     this.skeletonRenderPass.setDrawData(this.ctx.LINES,
