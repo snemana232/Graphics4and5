@@ -1,3 +1,5 @@
+import { Vec4 } from "../lib/TSM";
+
 export const floorVSText = `
     precision mediump float;
 
@@ -122,11 +124,52 @@ export const skeletonVSText = `
 
 export const skeletonFSText = `
     precision mediump float;
+    uniform float highlighted;
 
     void main () {
         gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+        if (highlighted == 1.0) {
+            gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);
+        }
     }
 `;
+
+//my code
+export const highlightVSText = `
+precision mediump float;
+
+attribute vec3 vertPosition;
+attribute float boneIndex;
+
+uniform mat4 mWorld;
+uniform mat4 mView;
+uniform mat4 mProj;
+uniform int highlighted;
+
+uniform vec3 bTrans[64];
+uniform vec4 bRots[64];
+
+vec3 qtrans(vec4 q, vec3 v) {
+    return v + 2.0 * cross(cross(v, q.xyz) - q.w*v, q.xyz);
+}
+
+void main () {
+    int index = int(boneIndex);
+    gl_Position = mProj * mView * mWorld * vec4(bTrans[index] + qtrans(bRots[index], vertPosition), 1.0);
+}
+`;
+
+//my code
+export const highlightFSText = `
+precision mediump float;
+uniform int highlighted;
+
+void main() {
+        gl_FragColor = Vec4(0.0, 0.0, 1.0, 1.0)
+}
+`;
+
+
 
 export const sBackVSText = `
     precision mediump float;

@@ -49,9 +49,14 @@ export class GUI implements IGUI {
 
   private animation: SkinningAnimation;
 
+  public highlight: number;
+
+
   public time: number;
   
   public mode: Mode;
+  
+
   
 
   public hoverX: number = 0;
@@ -276,13 +281,9 @@ export class GUI implements IGUI {
         console.log("x: " + eval1.x + ",y: " + eval1.y, ",z: " + eval1.z);
         console.log("x: " + eval2.x + ",y: " + eval2.y, ",z: " + eval2.z);
         console.log("intersection");
+        this.highlight = i;
      }
-
-
-
     }
-
-
   }
 
   public screenToWorld(mouseX: number, mouseY: number): Vec4 {

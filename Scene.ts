@@ -1,3 +1,4 @@
+import { CylinderBufferGeometry, CylinderGeometry } from "../lib/threejs/src/Three.js";
 import { Mat4, Quat, Vec3 } from "../lib/TSM.js";
 import { AttributeLoader, MeshGeometryLoader, BoneLoader, MeshLoader } from "./AnimationFileLoader.js";
 
@@ -49,7 +50,7 @@ export class Bone {
 
   public offset: number; // used when parsing the Collada file---you probably don't need to touch these
   public initialTransformation: Mat4;
-
+  cylinder: CylinderBufferGeometry
   constructor(bone: BoneLoader) {
     this.parent = bone.parent;
     this.children = Array.from(bone.children);
@@ -62,6 +63,8 @@ export class Bone {
     this.initialTransformation = bone.initialTransformation.copy();
   }
 }
+
+
 
 export class Mesh {
   public geometry: MeshGeometry;
