@@ -12,7 +12,6 @@ import {
   floorVSText,
   skeletonFSText,
   skeletonVSText,
-  highlightFSText,
   sBackVSText,
   sBackFSText
 } from "./Shaders.js";
@@ -87,7 +86,7 @@ export class SkinningAnimation extends CanvasAnimation {
     // TODO
     // Other initialization, for instance, for the bone highlighting
 
-    this.highlightRenderPass = new RenderPass(this.extVAO, gl, skeletonVSText, highlightFSText);
+    //this.highlightRenderPass = new RenderPass(this.extVAO, gl, skeletonVSText, highlightFSText);
 
     //this.initCylinder();
     
@@ -128,7 +127,7 @@ export class SkinningAnimation extends CanvasAnimation {
     if (this.scene.meshes.length === 0) { return; }
     this.initModel();
     this.initSkeleton();
-    this.initCylinder();
+    //this.initCylinder();
     this.gui.reset();
   }
 
